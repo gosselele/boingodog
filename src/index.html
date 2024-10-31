@@ -17,6 +17,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      overflow: hidden;
     }
 
     /* Title styling */
@@ -38,7 +39,7 @@
     }
 
     /* Button styling */
-    #scareButton {
+    #scareButton, #moreButton {
       background-color: #333;
       color: #ff6600;
       font-size: 1.5em;
@@ -47,9 +48,10 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.3s;
+      margin-top: 10px;
     }
 
-    #scareButton:hover {
+    #scareButton:hover, #moreButton:hover {
       background-color: #ff6600;
       color: #1e1e1e;
     }
@@ -73,16 +75,29 @@
       transition: transform 0.2s ease-in;
     }
 
-    /* Reduced Jump scare animation */
+    /* Boingo image styling */
+    #boingoImage {
+      display: none;
+      position: absolute;
+      width: 150px;
+      top: 50%;
+      left: 50%;
+      transition: transform 0.3s;
+    }
+
+    /* Float animation for boingo */
+    @keyframes float {
+      0% { transform: translate(-50%, -50%) translateX(-20px) translateY(-20px); }
+      25% { transform: translate(-50%, -50%) translateX(20px) translateY(-20px); }
+      50% { transform: translate(-50%, -50%) translateX(20px) translateY(20px); }
+      75% { transform: translate(-50%, -50%) translateX(-20px) translateY(20px); }
+      100% { transform: translate(-50%, -50%) translateX(-20px) translateY(-20px); }
+    }
+
+    /* Jump scare animation */
     .jump-scare {
       transform: scale(3.2) translateY(-10%);
       transition: transform 0.1s ease-in;
-    }
-
-    /* Fade-in animation */
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
   </style>
 </head>
@@ -91,6 +106,10 @@
   <h1>Halloween Button</h1>
   <button id="scareButton" onclick="toggleGoblin()">Click if you dare...</button>
   <img id="goblinImage" src="goblin.jpg" alt="A spooky goblin">
+  <img id="boingoImage" src="boingo.jpg" alt="A floating boingo">
+
+  <!-- Button for additional scare -->
+  <button id="moreButton" style="display: none;" onclick="startFloating()">Want some more?</button>
 
   <script>
     let goblinVisible = false;
@@ -98,6 +117,7 @@
     function toggleGoblin() {
       const goblinImage = document.getElementById('goblinImage');
       const button = document.getElementById('scareButton');
+      const moreButton = document.getElementById('moreButton');
 
       if (!goblinVisible) {
         // First click: add shake animation to button, show goblin image, and change button text
@@ -107,12 +127,23 @@
           goblinImage.style.display = 'block';
           goblinVisible = true;
           button.innerText = "Dare to do it again?";
-        }, 500); // Match this time to shake animation duration
+        }, 500);
 
       } else {
         // Second click: add "jump scare" effect
         goblinImage.classList.add('jump-scare');
+        
+        // Show "Want some more?" button after 3 seconds
+        setTimeout(() => {
+          moreButton.style.display = 'block';
+        }, 3000);
       }
+    }
+
+    function startFloating() {
+      const boingoImage = document.getElementById('boingoImage');
+      boingoImage.style.display = 'block';
+      boingoImage.style.animation = 'float 3s infinite alternate ease-in-out';
     }
   </script>
 
