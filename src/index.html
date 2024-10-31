@@ -86,13 +86,14 @@
       z-index: 1;
     }
 
-    /* Float animation for boingo */
-    @keyframes float {
-      0% { transform: translate(-50%, -50%) translateX(-20px) translateY(-20px); }
-      25% { transform: translate(-50%, -50%) translateX(20px) translateY(-20px); }
-      50% { transform: translate(-50%, -50%) translateX(20px) translateY(20px); }
-      75% { transform: translate(-50%, -50%) translateX(-20px) translateY(20px); }
-      100% { transform: translate(-50%, -50%) translateX(-20px) translateY(-20px); }
+    /* Enhanced floating animation for boingo */
+    @keyframes floatRandom {
+      0% { transform: translate(-50%, -50%) scale(1) translateX(-30px) translateY(-30px); }
+      20% { transform: translate(-50%, -50%) scale(1.2) translateX(40px) translateY(-50px); }
+      40% { transform: translate(-50%, -50%) scale(0.8) translateX(-60px) translateY(40px); }
+      60% { transform: translate(-50%, -50%) scale(1.4) translateX(50px) translateY(60px); }
+      80% { transform: translate(-50%, -50%) scale(0.9) translateX(-70px) translateY(-60px); }
+      100% { transform: translate(-50%, -50%) scale(1.1) translateX(30px) translateY(-40px); }
     }
 
     /* Jump scare animation */
@@ -149,7 +150,7 @@
     function startFloating() {
       const boingoImage = document.getElementById('boingoImage');
       boingoImage.style.display = 'block';
-      boingoImage.style.animation = 'float 3s infinite alternate ease-in-out';
+      boingoImage.style.animation = 'floatRandom 2.5s infinite alternate ease-in-out';
     }
   </script>
 
