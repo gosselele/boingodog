@@ -181,8 +181,12 @@
     }
 
     function showMrGronk() {
-      // Hide all elements except mrgronkImage
-      document.body.innerHTML = '<img id="mrgronkImage" src="mrgronk.jpg" alt="A terrifying mrgronk filling the screen">';
+      // Hide all other elements and show mrgronkImage
+      document.querySelectorAll('h1, #scareButton, #goblinImage, #boingoImage, #moreButton').forEach(el => {
+        el.style.display = 'none';
+      });
+      const mrgronkImage = document.getElementById('mrgronkImage');
+      mrgronkImage.style.display = 'block';
     }
   </script>
 
