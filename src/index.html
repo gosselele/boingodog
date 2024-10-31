@@ -86,6 +86,18 @@
       z-index: 1;
     }
 
+    /* Fullscreen mrgronk image */
+    #mrgronkImage {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 3;
+    }
+
     /* Enhanced floating animation for boingo */
     @keyframes floatRandom {
       0% { transform: translate(-50%, -50%) scale(1) translateX(-30px) translateY(-30px); }
@@ -114,12 +126,14 @@
   <button id="scareButton" onclick="toggleGoblin()">Click if you dare...</button>
   <img id="goblinImage" src="goblin.jpg" alt="A spooky goblin">
   <img id="boingoImage" src="boingo.jpg" alt="A floating boingo">
+  <img id="mrgronkImage" src="mrgronk.jpg" alt="A terrifying mrgronk filling the screen">
 
   <!-- Button for additional scare -->
-  <button id="moreButton" style="display: none;" onclick="startFloating()">Want some more?</button>
+  <button id="moreButton" style="display: none;" onclick="handleMoreButton()">Want some more?</button>
 
   <script>
     let goblinVisible = false;
+    let boingoActivated = false;
 
     function toggleGoblin() {
       const goblinImage = document.getElementById('goblinImage');
@@ -147,10 +161,28 @@
       }
     }
 
+    function handleMoreButton() {
+      const moreButton = document.getElementById('moreButton');
+      if (!boingoActivated) {
+        // Start floating boingo and change button text to "One last trick"
+        startFloating();
+        moreButton.innerText = "One last trick";
+        boingoActivated = true;
+      } else {
+        // Display mrgronk and hide all other elements
+        showMrGronk();
+      }
+    }
+
     function startFloating() {
       const boingoImage = document.getElementById('boingoImage');
       boingoImage.style.display = 'block';
       boingoImage.style.animation = 'floatRandom 2.5s infinite alternate ease-in-out';
+    }
+
+    function showMrGronk() {
+      // Hide all elements except mrgronkImage
+      document.body.innerHTML = '<img id="mrgronkImage" src="mrgronk.jpg" alt="A terrifying mrgronk filling the screen">';
     }
   </script>
 
