@@ -1,9 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halloween Button</title>
+  <style>
+    /* Background and text */
+    body {
+      background-color: #1e1e1e;
+      color: #e74c3c;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Title styling */
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 8px black;
+      color: #ff6600;
+      animation: flicker 2s infinite;
+    }
+
+    /* Flicker animation for title */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.1;
+      }
+    }
+
+    /* Button styling */
+    #scareButton {
+      background-color: #333;
+      color: #ff6600;
+      font-size: 1.5em;
+      padding: 15px 30px;
+      border: 2px solid #ff6600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    #scareButton:hover {
+      background-color: #ff6600;
+      color: #1e1e1e;
+    }
+
+    /* Button shake animation */
+    .shake {
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+      20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+
+    /* Hidden image styling */
+    #goblinImage {
+      display: none;
+      margin-top: 20px;
+      width: 300px;
+      animation: fadein 2s;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
 <body>
 
-<h2>HTML Image</h2>
-<img src="kita.jpg" alt="kita" class="center" width="800" height="800">
+  <h1>Halloween Button</h1>
+  <button id="scareButton" onclick="showGoblin()">Click if you dare...</button>
+  <img id="goblinImage" src="goblin.jpg" alt="A spooky goblin">
+
+  <script>
+    function showGoblin() {
+      // Add shake animation to button
+      const button = document.getElementById('scareButton');
+      button.classList.add('shake');
+      
+      // Display the goblin image with fade-in effect after the shake animation
+      setTimeout(() => {
+        button.classList.remove('shake');
+        document.getElementById('goblinImage').style.display = 'block';
+      }, 500); // Match this time to shake animation duration
+    }
+  </script>
 
 </body>
 </html>
