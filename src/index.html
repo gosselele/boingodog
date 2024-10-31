@@ -100,12 +100,13 @@
       const button = document.getElementById('scareButton');
 
       if (!goblinVisible) {
-        // First click: add shake animation to button and show goblin image
+        // First click: add shake animation to button, show goblin image, and change button text
         button.classList.add('shake');
         setTimeout(() => {
           button.classList.remove('shake');
           goblinImage.style.display = 'block';
           goblinVisible = true;
+          button.innerText = "Dare to do it again?";
         }, 500); // Match this time to shake animation duration
 
       } else {
