@@ -70,7 +70,13 @@
       display: none;
       margin-top: 20px;
       width: 300px;
-      animation: fadein 2s;
+      transition: transform 0.2s ease-in;
+    }
+
+    /* Jump scare animation */
+    .jump-scare {
+      transform: scale(4) translateY(-20%);
+      transition: transform 0.1s ease-in;
     }
 
     /* Fade-in animation */
@@ -83,20 +89,29 @@
 <body>
 
   <h1>Halloween Button</h1>
-  <button id="scareButton" onclick="showGoblin()">Click if you dare...</button>
+  <button id="scareButton" onclick="toggleGoblin()">Click if you dare...</button>
   <img id="goblinImage" src="goblin.jpg" alt="A spooky goblin">
 
   <script>
-    function showGoblin() {
-      // Add shake animation to button
+    let goblinVisible = false;
+
+    function toggleGoblin() {
+      const goblinImage = document.getElementById('goblinImage');
       const button = document.getElementById('scareButton');
-      button.classList.add('shake');
-      
-      // Display the goblin image with fade-in effect after the shake animation
-      setTimeout(() => {
-        button.classList.remove('shake');
-        document.getElementById('goblinImage').style.display = 'block';
-      }, 500); // Match this time to shake animation duration
+
+      if (!goblinVisible) {
+        // First click: add shake animation to button and show goblin image
+        button.classList.add('shake');
+        setTimeout(() => {
+          button.classList.remove('shake');
+          goblinImage.style.display = 'block';
+          goblinVisible = true;
+        }, 500); // Match this time to shake animation duration
+
+      } else {
+        // Second click: add "jump scare" effect
+        goblinImage.classList.add('jump-scare');
+      }
     }
   </script>
 
