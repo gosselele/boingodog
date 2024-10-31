@@ -83,6 +83,7 @@
       top: 50%;
       left: 50%;
       transition: transform 0.3s;
+      z-index: 1;
     }
 
     /* Float animation for boingo */
@@ -98,6 +99,11 @@
     .jump-scare {
       transform: scale(3.2) translateY(-10%);
       transition: transform 0.1s ease-in;
+    }
+
+    /* Ensure moreButton is in front */
+    #moreButton {
+      z-index: 2;
     }
   </style>
 </head>
